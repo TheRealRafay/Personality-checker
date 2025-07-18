@@ -1,54 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Name Personality Checker</title>
+  <title>Squad Personality Checker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(to right, #1d4350, #a43931);
       color: white;
       text-align: center;
-      padding: 50px;
+      padding: 30px 10px;
+      margin: 0;
     }
 
     .container {
       background: rgba(255, 255, 255, 0.1);
-      padding: 40px;
+      padding: 30px 15px;
       border-radius: 20px;
-      display: inline-block;
+      max-width: 500px;
+      width: 90%;
+      margin: auto;
       box-shadow: 0 0 15px rgba(0,0,0,0.3);
     }
 
     input[type="text"] {
-      padding: 12px;
+      padding: 15px;
       border-radius: 10px;
       border: none;
-      width: 250px;
+      width: 100%;
       font-size: 18px;
+      box-sizing: border-box;
     }
 
     button {
-      padding: 10px 25px;
+      padding: 15px;
       border-radius: 10px;
       background: #ff4b2b;
       color: white;
       border: none;
       font-size: 18px;
       margin-top: 15px;
+      width: 100%;
       cursor: pointer;
     }
 
     #result {
       margin-top: 25px;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: bold;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <h1>🔎 Squad Personality Checker</h1>
+    <h1>🔍 Squad Checker</h1>
     <input type="text" id="nameInput" placeholder="Write your name here">
     <br>
     <button onclick="checkName()">Tell Me!</button>
@@ -85,7 +96,7 @@
         case "noman":
           result = "Khamba 😭😂";
           break;
-         case "saad":
+        case "saad":
           result = "Chota bomb, bara dhamaka 💣🔥";
           break;
         default:
@@ -98,4 +109,3 @@
 
 </body>
 </html>
-
