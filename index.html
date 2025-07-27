@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Name Cricket Personality Checker</title>
+  <title>Cricket Personality & Voting</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -38,18 +38,19 @@
       cursor: pointer;
     }
 
-    .result {
-      margin-top: 25px;
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    .btn-section {
+    .nav-buttons {
       margin-top: 40px;
     }
 
-    .btn-section a button {
+    .nav-buttons a button {
       margin: 10px;
+      background: #444;
+    }
+
+    #result {
+      margin-top: 25px;
+      font-size: 24px;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -57,16 +58,15 @@
 
   <div class="container">
     <h1>🔎 Cricket Personality Checker</h1>
-
     <input type="text" id="nameInput" placeholder="Write your name here">
     <br>
     <button onclick="checkName()">Tell Me!</button>
+    <div id="result"></div>
 
-    <div class="result" id="result"></div>
-
-    <div class="btn-section">
+    <div class="nav-buttons">
       <a href="vote.html"><button>🗳️ Go to Voting Page</button></a>
       <a href="team.html"><button>👥 View Teams</button></a>
+      <a href="rules.html"><button>📋 View Rules</button></a>
     </div>
   </div>
 
@@ -83,34 +83,34 @@
           result = "Good player but Cheating krta h 😆";
           break;
         case "zoyan":
-          result = "Bhatta bowler but good batter 💪";
+          result = "bhatta bowler but good batter 💪";
           break;
         case "ahmed":
-          result = "Great player and fast bowler 😅🔥";
+          result = "great player and fast bowler 😅🔥";
           break;
         case "nafay":
           result = "Fankar but good player 😎";
           break;
         case "sami":
-          result = "Thori kam cricket khelta h, lekin tez bhatte deta h 🤙";
+          result = "Bss thori kam cricket khelta h, pr achi khelta h .bohat tez bhatte karata h🤙";
           break;
         case "rafay":
-          result = "Khatarnak Bowling, Chake Marne wala player 😁⚽";
+          result = "Khatarnak Bowling,Chake Marne wala player 😁⚽";
           break;
         case "noman":
-          result = "Acha Khelta h pr bohat slow batting krta h 😭😂";
+          result = "Acha Khelta h pr bohat slow batting krta h chake nhi marta 😭😂";
           break;
         case "saad":
           result = "Chota bomb, bara dhamaka 💣🔥";
           break;
         case "husam":
-          result = "Magi krta h aur beech men game chor deta h 😠";
+          result = "Magi krta h aur beech men game chor deta h😠";
           break;
         case "hamza":
-          result = "Batting aur fielding achi krta h pr Bowling thori si khrab h 😄";
+          result = "Batting aur fielding achi krta h pr Bowling thori si khrab h😄";
           break;
         default:
-          result = "Ya to spelling galat likhi h ya naam database mein nahi mila 🤔";
+          result = "Ya to Tumne spelling Galat likhi h ya phir Naam database mein nahi mila 🤔. Add karne ko bolo Rafay ko!";
       }
 
       document.getElementById("result").innerText = result;
