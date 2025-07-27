@@ -12,8 +12,8 @@
     }
 
     .container {
-      max-width: 800px;
-      margin: 0 auto;
+      max-width: 900px;
+      margin: auto;
       background: rgba(255, 255, 255, 0.08);
       border-radius: 20px;
       padding: 30px;
@@ -27,19 +27,25 @@
     }
 
     .team-column {
-      flex: 1;
-      padding: 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .team-block {
+      text-align: left;
     }
 
     .team-title {
       font-size: 24px;
-      margin-bottom: 20px;
       font-weight: bold;
+      margin-bottom: 15px;
     }
 
     .player {
       font-size: 18px;
-      margin: 8px 0;
+      margin: 6px 0;
     }
 
     .divider {
@@ -49,12 +55,11 @@
     }
 
     .vertical-label {
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
       font-size: 18px;
       font-weight: bold;
-      margin-bottom: 20px;
-      color: #ffd700;
+      line-height: 1;
+      letter-spacing: 3px;
+      white-space: pre-wrap;
     }
 
     a button {
@@ -67,6 +72,15 @@
       border-radius: 10px;
       cursor: pointer;
     }
+
+    @media screen and (max-width: 768px) {
+      .team-row {
+        flex-direction: column;
+      }
+      .divider {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -75,28 +89,37 @@
     <h1>👥 Cricket Teams</h1>
 
     <div class="team-row">
+
+      <!-- Team Zalmi -->
       <div class="team-column">
-        <div class="vertical-label">TEAM</div>
-        <div class="team-title">⚡ Zalmi</div>
-        <div class="player">Rafay (Captain)</div>
-        <div class="player">Zoyan</div>
-        <div class="player">Haseeb</div>
-        <div class="player">Saad</div>
-        <div class="player">Hamza</div>
-        <div class="player">Sami</div>
+        <div class="vertical-label">T<br>E<br>A<br>M</div>
+        <div class="team-block">
+          <div class="team-title">⚡ Zalmi</div>
+          <div class="player">Rafay (Captain)</div>
+          <div class="player">Zoyan</div>
+          <div class="player">Haseeb</div>
+          <div class="player">Saad</div>
+          <div class="player">Hamza</div>
+          <div class="player">Sami</div>
+        </div>
       </div>
 
+      <!-- Divider -->
       <div class="divider"></div>
 
+      <!-- Team Qalandars -->
       <div class="team-column">
-        <div class="vertical-label">TEAM</div>
-        <div class="team-title">🟢 Qalandars</div>
-        <div class="player">Ahmed (Captain)</div>
-        <div class="player">Noman</div>
-        <div class="player">Alijan</div>
-        <div class="player">Husam</div>
-        <div class="player">Nafay</div>
+        <div class="vertical-label">T<br>E<br>A<br>M</div>
+        <div class="team-block">
+          <div class="team-title">🟢 Qalandars</div>
+          <div class="player">Ahmed (Captain)</div>
+          <div class="player">Noman</div>
+          <div class="player">Alijan</div>
+          <div class="player">Husam</div>
+          <div class="player">Nafay</div>
+        </div>
       </div>
+
     </div>
 
     <a href="index.html"><button>🏠 Back to Home</button></a>
