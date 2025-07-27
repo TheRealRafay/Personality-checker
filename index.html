@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cricket Personality & Vote</title>
+  <title>Cricket Personality & Team Voting</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -49,32 +49,36 @@
 <body>
 
   <div class="container">
-    <h1>🏏 Cricket Personality & Vote</h1>
+    <h1>🏏 Cricket Personality & Team Voting</h1>
 
-    <!-- Shared Input -->
-    <input type="text" id="sharedNameInput" placeholder="Enter your name">
+    <!-- 🔍 Personality Checker -->
+    <input type="text" id="nameInput" placeholder="Enter your name for personality check">
     <br>
     <button onclick="checkName()">Check Personality</button>
     <div id="result"></div>
 
-    <!-- Voting Section -->
+    <!-- 🗳️ Voting Section -->
     <br><br>
-    <h2>🗳️ Vote for Your Team</h2>
+    <h2>Vote for Your Team</h2>
+
+    <input type="text" id="voterName" placeholder="Enter your name for voting">
+    <br>
     <select id="voteSelect">
-      <option value="">--Vote For--</option>
+      <option value="">--Choose Team--</option>
       <option value="Zalmi">⚡ Zalmi</option>
       <option value="Qalandars">🟢 Qalandars</option>
     </select>
     <br>
     <button onclick="submitVote()">Submit Vote</button>
 
-    <h3 style="margin-top: 30px;">📊 Voting List:</h3>
+    <h3 style="margin-top: 30px;">📊 Who Voted for Which Team:</h3>
     <div id="voteList"></div>
   </div>
 
   <script>
+    // ✅ Personality Checker
     function checkName() {
-      const name = document.getElementById("sharedNameInput").value.trim().toLowerCase();
+      const name = document.getElementById("nameInput").value.trim().toLowerCase();
       let result = "";
 
       switch(name) {
@@ -96,19 +100,20 @@
       document.getElementById("result").innerText = result;
     }
 
+    // ✅ Voting Logic
     function submitVote() {
-      const name = document.getElementById("sharedNameInput").value.trim();
+      const name = document.getElementById("voterName").value.trim();
       const vote = document.getElementById("voteSelect").value;
 
       if (!name || !vote) {
-        alert("Please enter your name and select a team to vote!");
+        alert("Please enter your name and select a team!");
         return;
       }
 
       let votes = JSON.parse(localStorage.getItem("votes")) || [];
 
-      const existing = votes.find(v => v.name.toLowerCase() === name.toLowerCase());
-      if (existing) {
+      const alreadyVoted = votes.find(v => v.name.toLowerCase() === name.toLowerCase());
+      if (alreadyVoted) {
         alert("You already voted!");
         return;
       }
@@ -116,8 +121,12 @@
       votes.push({ name, vote });
       localStorage.setItem("votes", JSON.stringify(votes));
 
-      alert(`${name} voted for ${vote}!`);
       showVotes();
+      alert(`${name} voted for ${vote}!`);
+
+      // Clear inputs
+      document.getElementById("voterName").value = "";
+      document.getElementById("voteSelect").value = "";
     }
 
     function showVotes() {
@@ -126,6 +135,7 @@
       document.getElementById("voteList").innerHTML = voteList || "No votes yet.";
     }
 
+    // Show votes on page load
     window.onload = showVotes;
   </script>
 </body>
