@@ -46,12 +46,6 @@
       color: #ff4b4b;
     }
 
-    #teamMembers {
-      margin-top: 20px;
-      font-size: 18px;
-      display: none;
-    }
-
     .button-section {
       margin-top: 30px;
     }
@@ -79,9 +73,7 @@
     <div id="message"></div>
 
     <div class="button-section">
-      <br>
-      <button onclick="toggleTeams()">👥 Show Team Members</button>
-      <div id="teamMembers"></div>
+      <a href="team.html"><button>👥 Show Team Members</button></a>
     </div>
 
     <a href="index.html"><button>🏠 Back to Home</button></a>
@@ -121,21 +113,7 @@
         messageDiv.innerHTML = "<div class='error'>❌ Failed to submit vote.</div>";
       });
     }
-
-    function toggleTeams() {
-      const box = document.getElementById("teamMembers");
-
-      if (box.style.display === "none") {
-        box.innerHTML = `
-          <strong>⚡ Zalmi:</strong> Rafay (Captain), Zoyan, Haseeb, Saad, Hamza, Sami<br><br>
-          <strong>🟢 Qalandars:</strong> Ahmed (Captain), Noman, Alijan, Husam, Nafay
-        `;
-        box.style.display = "block";
-      } else {
-        box.innerHTML = "";
-        box.style.display = "none";
-      }
-    }
   </script>
+
 </body>
 </html>
