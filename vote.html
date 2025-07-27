@@ -45,6 +45,11 @@
       font-weight: bold;
       color: #ff4b4b;
     }
+
+    #teamMembers {
+      margin-top: 20px;
+      font-size: 18px;
+    }
   </style>
 </head>
 <body>
@@ -61,11 +66,18 @@
     <br>
     <button onclick="submitVote()">Submit Vote</button>
     <div id="message"></div>
-    <br>
+
+    <br><br>
+    <button onclick="toggleTeams()">Show Team Members</button>
+    <div id="teamMembers" style="display:none;"></div>
+
+    <br><br>
     <a href="index.html"><button>Back to Personality Page</button></a>
   </div>
 
   <script>
+    // ✅ SheetDB API (Replace this with your real one)
+    const API_URL = "https://sheetdb.io/api/v1/aq1ik8ftvmnxs";
     function submitVote() {
       const name = document.getElementById("name").value.trim();
       const team = document.getElementById("team").value;
@@ -76,7 +88,6 @@
         return;
       }
 
-      const API_URL = "https://sheetdb.io/api/v1/aq1ik8ftvmnxs"; 
       fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -97,6 +108,20 @@
         console.error(err);
         messageDiv.innerHTML = "<div class='error'>❌ Failed to submit vote.</div>";
       });
+    }
+
+    function toggleTeams() {
+      const box = document.getElementById("teamMembers");
+
+      if (box.style.display === "none") {
+        box.innerHTML = `
+          <strong>⚡ Zalmi:</strong> Rafay (Captain), Zoyan, Haseeb, Saad, Hamza, Sami<br><br>
+          <strong>🟢 Qalandars:</strong> Ahmed (Captain), Noman, Alijan, Husam, Nafay
+        `;
+        box.style.display = "block";
+      } else {
+        box.style.display = "none";
+      }
     }
   </script>
 </body>
