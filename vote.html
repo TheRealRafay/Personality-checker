@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Name Cricket Personality Checker</title>
+  <title>Team Voting</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: Arial;
       background: linear-gradient(to right, #1d4350, #a43931);
       color: white;
       text-align: center;
@@ -12,110 +12,130 @@
     }
 
     .container {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 40px;
+      background: rgba(255,255,255,0.1);
+      padding: 30px;
       border-radius: 20px;
       display: inline-block;
       box-shadow: 0 0 15px rgba(0,0,0,0.3);
     }
 
-    input[type="text"] {
+    input, select, button {
       padding: 12px;
+      margin: 10px;
       border-radius: 10px;
       border: none;
-      width: 250px;
       font-size: 18px;
+      width: 250px;
     }
 
     button {
-      padding: 10px 25px;
-      border-radius: 10px;
-      background: #ff4b2b;
+      background-color: #ff4b2b;
       color: white;
-      border: none;
-      font-size: 18px;
-      margin-top: 15px;
       cursor: pointer;
     }
 
-    .result {
-      margin-top: 25px;
-      font-size: 24px;
+    .success {
+      margin-top: 15px;
       font-weight: bold;
+      color: #00ff88;
     }
 
-    .btn-section {
-      margin-top: 40px;
+    .error {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #ff4b4b;
     }
 
-    .btn-section a button {
-      margin: 10px;
+    #teamMembers {
+      margin-top: 20px;
+      font-size: 18px;
+      display: none;
+    }
+
+    .button-section {
+      margin-top: 30px;
+    }
+
+    a button {
+      margin-top: 20px;
+      background-color: #444;
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <h1>🔎 Cricket Personality Checker</h1>
+    <h1>🗳️ Vote for Your Team</h1>
 
-    <input type="text" id="nameInput" placeholder="Write your name here">
+    <input type="text" id="name" placeholder="Your Name">
     <br>
-    <button onclick="checkName()">Tell Me!</button>
+    <select id="team">
+      <option value="">--Select Team--</option>
+      <option value="Zalmi">⚡ Zalmi</option>
+      <option value="Qalandars">🟢 Qalandars</option>
+    </select>
+    <br>
+    <button onclick="submitVote()">Submit Vote</button>
+    <div id="message"></div>
 
-    <div class="result" id="result"></div>
-
-    <div class="btn-section">
-      <a href="vote.html"><button>🗳️ Go to Voting Page</button></a>
-      <a href="team.html"><button>👥 View Teams</button></a>
+    <div class="button-section">
+      <br>
+      <button onclick="toggleTeams()">👥 Show Team Members</button>
+      <div id="teamMembers"></div>
     </div>
+
+    <a href="index.html"><button>🏠 Back to Home</button></a>
   </div>
 
   <script>
-    function checkName() {
-      const name = document.getElementById("nameInput").value.trim().toLowerCase();
-      let result = "";
+    const API_URL = "https://sheetdb.io/api/v1/aq1ik8ftvmnxs";
 
-      switch(name) {
-        case "haseeb":
-          result = "Acha player, cricket sahi khelta h.";
-          break;
-        case "alijan":
-          result = "Good player but Cheating krta h 😆";
-          break;
-        case "zoyan":
-          result = "Bhatta bowler but good batter 💪";
-          break;
-        case "ahmed":
-          result = "Great player and fast bowler 😅🔥";
-          break;
-        case "nafay":
-          result = "Fankar but good player 😎";
-          break;
-        case "sami":
-          result = "Thori kam cricket khelta h, lekin tez bhatte deta h 🤙";
-          break;
-        case "rafay":
-          result = "Khatarnak Bowling, Chake Marne wala player 😁⚽";
-          break;
-        case "noman":
-          result = "Acha Khelta h pr bohat slow batting krta h 😭😂";
-          break;
-        case "saad":
-          result = "Chota bomb, bara dhamaka 💣🔥";
-          break;
-        case "husam":
-          result = "Magi krta h aur beech men game chor deta h 😠";
-          break;
-        case "hamza":
-          result = "Batting aur fielding achi krta h pr Bowling thori si khrab h 😄";
-          break;
-        default:
-          result = "Ya to spelling galat likhi h ya naam database mein nahi mila 🤔";
+    function submitVote() {
+      const name = document.getElementById("name").value.trim();
+      const team = document.getElementById("team").value;
+      const messageDiv = document.getElementById("message");
+
+      if (!name || !team) {
+        messageDiv.innerHTML = "<div class='error'>Please enter your name and select a team.</div>";
+        return;
       }
 
-      document.getElementById("result").innerText = result;
+      fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          data: {
+            Name: name,
+            Team: team
+          }
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        messageDiv.innerHTML = "<div class='success'>✅ Vote submitted!</div>";
+        document.getElementById("name").value = "";
+        document.getElementById("team").value = "";
+      })
+      .catch(err => {
+        console.error(err);
+        messageDiv.innerHTML = "<div class='error'>❌ Failed to submit vote.</div>";
+      });
+    }
+
+    function toggleTeams() {
+      const box = document.getElementById("teamMembers");
+
+      if (box.style.display === "none") {
+        box.innerHTML = `
+          <strong>⚡ Zalmi:</strong> Rafay (Captain), Zoyan, Haseeb, Saad, Hamza, Sami<br><br>
+          <strong>🟢 Qalandars:</strong> Ahmed (Captain), Noman, Alijan, Husam, Nafay
+        `;
+        box.style.display = "block";
+      } else {
+        box.innerHTML = "";
+        box.style.display = "none";
+      }
     }
   </script>
-
 </body>
 </html>
