@@ -2,54 +2,61 @@
 <html>
 <head>
   <title>Cricket Personality & Voting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(to right, #1d4350, #a43931);
       color: white;
       text-align: center;
-      padding: 50px;
+      padding: 20px;
+      margin: 0;
     }
 
     .container {
       background: rgba(255, 255, 255, 0.1);
-      padding: 40px;
+      padding: 30px 20px;
       border-radius: 20px;
       display: inline-block;
       box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      max-width: 90%;
+      width: 100%;
     }
 
     input[type="text"] {
       padding: 12px;
       border-radius: 10px;
       border: none;
-      width: 250px;
-      font-size: 18px;
+      width: 90%;
+      max-width: 300px;
+      font-size: 16px;
     }
 
     button {
-      padding: 10px 25px;
+      padding: 12px 20px;
       border-radius: 10px;
       background: #ff4b2b;
       color: white;
       border: none;
-      font-size: 18px;
+      font-size: 16px;
       margin-top: 15px;
       cursor: pointer;
+      width: 90%;
+      max-width: 300px;
     }
 
     .nav-buttons {
-      margin-top: 40px;
+      margin-top: 30px;
     }
 
     .nav-buttons a button {
-      margin: 10px;
-      background: #444;
+      margin-top: 10px;
+      background-color: #444;
     }
 
     #result {
-      margin-top: 25px;
-      font-size: 24px;
+      margin-top: 20px;
+      font-size: 20px;
       font-weight: bold;
     }
   </style>
@@ -57,7 +64,7 @@
 <body>
 
   <div class="container">
-    <h1>🔎 Cricket Personality Checker</h1>
+    <h2>🔎 Cricket Personality Checker</h2>
     <input type="text" id="nameInput" placeholder="Write your name here">
     <br>
     <button onclick="checkName()">Tell Me!</button>
