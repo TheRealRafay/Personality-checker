@@ -38,20 +38,18 @@
       cursor: pointer;
     }
 
-    #result {
+    .result {
       margin-top: 25px;
       font-size: 24px;
       font-weight: bold;
     }
 
-    #teamMembers {
-      display: none;
-      margin-top: 20px;
-      font-size: 18px;
+    .btn-section {
+      margin-top: 40px;
     }
 
-    .btn-section {
-      margin-top: 30px;
+    .btn-section a button {
+      margin: 10px;
     }
   </style>
 </head>
@@ -59,17 +57,16 @@
 
   <div class="container">
     <h1>🔎 Cricket Personality Checker</h1>
+
     <input type="text" id="nameInput" placeholder="Write your name here">
     <br>
     <button onclick="checkName()">Tell Me!</button>
-    <div id="result"></div>
+
+    <div class="result" id="result"></div>
 
     <div class="btn-section">
-      <br>
       <a href="vote.html"><button>🗳️ Go to Voting Page</button></a>
-      <br><br>
-      <button onclick="toggleTeams()">👥 Show Team Members</button>
-      <div id="teamMembers"></div>
+      <a href="team.html"><button>👥 View Teams</button></a>
     </div>
   </div>
 
@@ -86,10 +83,10 @@
           result = "Good player but Cheating krta h 😆";
           break;
         case "zoyan":
-          result = "bhatta bowler but good batter 💪";
+          result = "Bhatta bowler but good batter 💪";
           break;
         case "ahmed":
-          result = "great player and fast bowler 😅🔥";
+          result = "Great player and fast bowler 😅🔥";
           break;
         case "nafay":
           result = "Fankar but good player 😎";
@@ -113,25 +110,10 @@
           result = "Batting aur fielding achi krta h pr Bowling thori si khrab h 😄";
           break;
         default:
-          result = "Ya to Tumne spelling Galat likhi h ya phir Naam database mein nahi mila 🤔. Add karne ko bolo Rafay ko!";
+          result = "Ya to tumne spelling galat likhi h ya naam database mein nahi mila 🤔. Add karne ko bolo Rafay ko!";
       }
 
       document.getElementById("result").innerText = result;
-    }
-
-    function toggleTeams() {
-      const box = document.getElementById("teamMembers");
-
-      if (box.style.display === "none" || box.innerHTML === "") {
-        box.innerHTML = `
-          <strong>⚡ Zalmi:</strong> Rafay (C), Haseeb, Saad, Hamza, Sami-Not Avaliable<br><br>
-          <strong>🟢 Qalandars:</strong> Ahmed (C), Noman, Alijan, Husam
-        `;
-        box.style.display = "block";
-      } else {
-        box.innerHTML = "";
-        box.style.display = "none";
-      }
     }
   </script>
 
