@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Team Voting</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: linear-gradient(to right, #1d4350, #a43931);
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 20px;
+      display: inline-block;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    input, select, button {
+      padding: 12px;
+      margin: 10px;
+      border-radius: 10px;
+      border: none;
+      font-size: 18px;
+      width: 250px;
+    }
+
+    button {
+      background-color: #ff4b2b;
+      color: white;
+      cursor: pointer;
+    }
+
+    #voteList {
+      margin-top: 25px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🗳️ Vote for Your Team</h1>
+    <input type="text" id="voterName" placeholder="Enter your name">
+    <br>
+    <select id="voteSelect">
+      <option value="">--Choose Team--</option>
+      <option value="Zalmi">⚡ Zalmi</option>
+      <option value="Qalandars">🟢 Qalandars</option>
+    </select>
+    <br>
+    <button onclick="submitVote()">Submit Vote</button>
+    <br>
+    <a href="index.html"><button>Back to Personality Page</button></a>
+
+    <h3 style="margin-top: 30px;">📊 Who Voted:</h3>
+    <div id="voteList"></div>
+  </div>
+
+  <script>
+    function submitVote() {
+      const name = document.getElementById("voterName").value.trim();
+      const vote = document.getElementById("voteSelect").value;
+
+      if (!name || !vote) {
+        alert("Please enter your name and select a team!");
+        return;
+      }
+
+      let votes = JSON.parse(localStorage.getItem("votes")) || [];
+
+      const alreadyVoted = votes.find(v => v.name.toLowerCase() === name.toLowerCase());
+      if (alreadyVoted) {
+        alert("You already voted!");
+        return;
+      }
+
+      votes.push({ name, vote });
+      localStorage.setItem("votes", JSON.stringify(votes));
+
+      showVotes();
+      alert(`${name} voted for ${vote}!`);
+      document.getElementById("voterName").value = "";
+      document.getElementById("voteSelect").value = "";
+    }
+
+    function showVotes() {
+      const votes = JSON.parse(localStorage.getItem("votes")) || [];
+      const voteList = votes.map(v => `• ${v.name} → ${v.vote}`).join("<br>");
+      document.getElementById("voteList").innerHTML = voteList || "No votes yet.";
+    }
+
+    window.onload = showVotes;
+  </script>
+</body>
+</html>
