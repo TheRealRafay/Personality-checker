@@ -34,10 +34,16 @@
       cursor: pointer;
     }
 
-    #voteList {
-      margin-top: 25px;
-      font-size: 20px;
+    .success {
+      margin-top: 15px;
       font-weight: bold;
+      color: #00ff88;
+    }
+
+    .error {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #ff4b4b;
     }
 
     #teamMembers {
@@ -45,71 +51,77 @@
       font-size: 18px;
       display: none;
     }
+
+    .button-section {
+      margin-top: 30px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>🗳️ Vote for Your Team</h1>
 
-    <input type="text" id="voterName" placeholder="Enter your name">
+    <input type="text" id="name" placeholder="Your Name">
     <br>
-    <select id="voteSelect">
-      <option value="">--Choose Team--</option>
+    <select id="team">
+      <option value="">--Select Team--</option>
       <option value="Zalmi">⚡ Zalmi</option>
       <option value="Qalandars">🟢 Qalandars</option>
     </select>
     <br>
     <button onclick="submitVote()">Submit Vote</button>
+    <div id="message"></div>
 
-    <h3 style="margin-top: 30px;">📊 Who Voted:</h3>
-    <div id="voteList"></div>
-
-    <br><br>
-    <button onclick="toggleTeams()">👥 Show Team Members</button>
-    <div id="teamMembers"></div>
+    <div class="button-section">
+      <br>
+      <button onclick="toggleTeams()">👥 Show Team Members</button>
+      <div id="teamMembers"></div>
+    </div>
 
     <br><br>
     <a href="index.html"><button>Back to Personality Page</button></a>
   </div>
 
   <script>
+    
+    const API_URL = "https://sheetdb.io/api/v1/aq1ik8ftvmnxs";
+
     function submitVote() {
-      const name = document.getElementById("voterName").value.trim();
-      const vote = document.getElementById("voteSelect").value;
+      const name = document.getElementById("name").value.trim();
+      const team = document.getElementById("team").value;
+      const messageDiv = document.getElementById("message");
 
-      if (!name || !vote) {
-        alert("Please enter your name and select a team!");
+      if (!name || !team) {
+        messageDiv.innerHTML = "<div class='error'>Please enter your name and select a team.</div>";
         return;
       }
 
-      let votes = JSON.parse(localStorage.getItem("votes")) || [];
-
-      const alreadyVoted = votes.find(v => v.name.toLowerCase() === name.toLowerCase());
-      if (alreadyVoted) {
-        alert("You already voted!");
-        return;
-      }
-
-      votes.push({ name, vote });
-      localStorage.setItem("votes", JSON.stringify(votes));
-
-      showVotes();
-      alert(`${name} voted for ${vote}!`);
-
-      document.getElementById("voterName").value = "";
-      document.getElementById("voteSelect").value = "";
-    }
-
-    function showVotes() {
-      const votes = JSON.parse(localStorage.getItem("votes")) || [];
-      const voteList = votes.map(v => `• ${v.name} → ${v.vote}`).join("<br>");
-      document.getElementById("voteList").innerHTML = voteList || "No votes yet.";
+      fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          data: {
+            Name: name,
+            Team: team
+          }
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        messageDiv.innerHTML = "<div class='success'>✅ Vote submitted!</div>";
+        document.getElementById("name").value = "";
+        document.getElementById("team").value = "";
+      })
+      .catch(err => {
+        console.error(err);
+        messageDiv.innerHTML = "<div class='error'>❌ Failed to submit vote.</div>";
+      });
     }
 
     function toggleTeams() {
       const box = document.getElementById("teamMembers");
 
-      if (box.style.display === "none" || box.innerHTML === "") {
+      if (box.style.display === "none") {
         box.innerHTML = `
           <strong>⚡ Zalmi:</strong> Rafay (Captain), Zoyan, Haseeb, Saad, Hamza, Sami<br><br>
           <strong>🟢 Qalandars:</strong> Ahmed (Captain), Noman, Alijan, Husam, Nafay
@@ -120,9 +132,6 @@
         box.style.display = "none";
       }
     }
-
-    // Show votes on page load
-    window.onload = showVotes;
   </script>
 </body>
 </html>
