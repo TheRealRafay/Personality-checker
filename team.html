@@ -1,84 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Team Members</title>
+  <title>Our Cricket Teams</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: Arial, sans-serif;
       background: linear-gradient(to right, #1d4350, #a43931);
       color: white;
       text-align: center;
-      padding: 50px;
+      padding: 20px;
+      margin: 0;
     }
 
     .container {
-      max-width: 900px;
-      margin: auto;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px 20px;
       border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      max-width: 90%;
+      margin: auto;
     }
 
-    .team-row {
+    h1 {
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
+
+    .teams {
       display: flex;
-      justify-content: space-around;
-      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
     }
 
-    .team-column {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .team-block {
-      text-align: left;
+    .team-box {
+      flex: 1 1 45%;
+      min-width: 140px;
+      background-color: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 15px;
     }
 
     .team-title {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: bold;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      border-bottom: 2px solid white;
+      padding-bottom: 5px;
     }
 
-    .player {
-      font-size: 18px;
-      margin: 6px 0;
-    }
-
-    .divider {
-      width: 2px;
-      background: white;
-      height: auto;
-    }
-
-    .vertical-label {
-      font-size: 18px;
-      font-weight: bold;
-      line-height: 1;
-      letter-spacing: 3px;
-      white-space: pre-wrap;
+    ul {
+      list-style: none;
+      padding: 0;
+      font-size: 16px;
+      line-height: 1.8;
     }
 
     a button {
       margin-top: 30px;
       padding: 10px 20px;
       background-color: #ff4b2b;
-      border: none;
       color: white;
-      font-size: 18px;
+      border: none;
       border-radius: 10px;
+      font-size: 16px;
       cursor: pointer;
     }
 
-    @media screen and (max-width: 768px) {
-      .team-row {
+    @media (max-width: 500px) {
+      .teams {
         flex-direction: column;
-      }
-      .divider {
-        display: none;
+        gap: 20px;
       }
     }
   </style>
@@ -86,40 +80,31 @@
 <body>
 
   <div class="container">
-    <h1>👥 Cricket Teams</h1>
+    <h1>🏏 Gully Cricket Teams</h1>
 
-    <div class="team-row">
-
-      <!-- Team Zalmi -->
-      <div class="team-column">
-        <div class="vertical-label">T<br>E<br>A<br>M</div>
-        <div class="team-block">
-          <div class="team-title">⚡ Zalmi</div>
-          <div class="player">Rafay (Captain)</div>
-          <div class="player">Haseeb</div>
-          <div class="player">Saad</div>
-          <div class="player">Hamza</div>
-          <div class="player">Sami-Not Avaliable</div>
-                  <div class="player">Not Confirmed</div>
-        </div>
+    <div class="teams">
+      <div class="team-box">
+        <div class="team-title">⚡ Zalmi</div>
+        <ul>
+          <li>Rafay (C)</li>
+          <li>Haseeb</li>
+          <li>Saad</li>
+          <li>Hamza</li>
+          <li>Sami--Not Avaliable</li>
+          <li>Not Confirmed</li>
+        </ul>
       </div>
 
-      <!-- Divider -->
-      <div class="divider"></div>
-
-      <!-- Team Qalandars -->
-      <div class="team-column">
-        <div class="vertical-label">T<br>E<br>A<br>M</div>
-        <div class="team-block">
-          <div class="team-title">🟢 Qalandars</div>
-          <div class="player">Ahmed (Captain)</div>
-          <div class="player">Noman</div>
-          <div class="player">Alijan</div>
-          <div class="player">Husam</div>
-          <div class="player">Not Confirmed</div>
-        </div>
+      <div class="team-box">
+        <div class="team-title">🟢 Qalandars</div>
+        <ul>
+          <li>Ahmed (C)</li>
+          <li>Noman</li>
+          <li>Alijan</li>
+          <li>Husam</li>
+          <li>Not Confirmed</li>
+        </ul>
       </div>
-
     </div>
 
     <a href="index.html"><button>🏠 Back to Home</button></a>
