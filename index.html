@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cricket Personality Checker</title>
+  <title>Name Cricket Personality Checker</title>
   <style>
     body {
-      font-family: Arial;
+      font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(to right, #1d4350, #a43931);
       color: white;
       text-align: center;
@@ -19,39 +19,58 @@
       box-shadow: 0 0 15px rgba(0,0,0,0.3);
     }
 
-    input, button {
+    input[type="text"] {
       padding: 12px;
-      margin: 10px;
       border-radius: 10px;
       border: none;
-      font-size: 18px;
       width: 250px;
+      font-size: 18px;
     }
 
     button {
-      background-color: #ff4b2b;
+      padding: 10px 25px;
+      border-radius: 10px;
+      background: #ff4b2b;
       color: white;
+      border: none;
+      font-size: 18px;
+      margin-top: 15px;
       cursor: pointer;
     }
 
     #result {
       margin-top: 25px;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: bold;
+    }
+
+    #teamMembers {
+      display: none;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .btn-section {
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
+
   <div class="container">
-    <h1>🔍 Cricket Personality Checker</h1>
-    <input type="text" id="nameInput" placeholder="Enter your name">
+    <h1>🔎 Cricket Personality Checker</h1>
+    <input type="text" id="nameInput" placeholder="Write your name here">
     <br>
     <button onclick="checkName()">Tell Me!</button>
     <div id="result"></div>
-    <br>
-    <a href="vote.html">
-      <button>Go to Voting Page</button>
-    </a>
+
+    <div class="btn-section">
+      <br>
+      <a href="vote.html"><button>🗳️ Go to Voting Page</button></a>
+      <br><br>
+      <button onclick="toggleTeams()">👥 Show Team Members</button>
+      <div id="teamMembers"></div>
+    </div>
   </div>
 
   <script>
@@ -60,26 +79,61 @@
       let result = "";
 
       switch(name) {
-        case "haseeb": result = "Acha player, cricket sahi khelta h."; break;
-        case "alijan": result = "Good player but Cheating krta h 😆"; break;
-        case "zoyan": result = "Bhatta bowler but good batter 💪"; break;
-        case "ahmad": result = "Great player and fast bowler 😅🔥"; break;
-        case "nafay": result = "Fankar but good player 😎"; break;
-        case "sami": result = "Thori kam cricket khelta h, pr achi khelta h. Tez bhatte krta h 🤙"; break;
-        case "rafay": result = "Khatarnak Bowling, Chake Marne wala player 😁⚽"; break;
-        case "noman": result = "Acha Khelta h pr slow batting krta h 😭😂"; break;
-        case "saad": result = "Chota bomb, bara dhamaka 💣🔥"; break;
-        case "husam": result = "Magi krta h aur beech men game chor deta h 😠"; break;
-            case "hussam": result = "Magi krta h aur beech men game chor deta h 😠"; break;
-            case "husam": result = "Magi krta h aur beech men game chor deta h 😠"; break;
-            case "usam": result = "Magi krta h aur beech men game chor deta h 😠"; break;
-        case "hamza": result = "Batting aur fielding achi, bowling thori weak 😄"; break;
+        case "haseeb":
+          result = "Acha player, cricket sahi khelta h.";
+          break;
+        case "alijan":
+          result = "Good player but Cheating krta h 😆";
+          break;
+        case "zoyan":
+          result = "bhatta bowler but good batter 💪";
+          break;
+        case "ahmed":
+          result = "great player and fast bowler 😅🔥";
+          break;
+        case "nafay":
+          result = "Fankar but good player 😎";
+          break;
+        case "sami":
+          result = "Bss thori kam cricket khelta h, pr achi khelta h. Bohat tez bhatte karata h 🤙";
+          break;
+        case "rafay":
+          result = "Khatarnak Bowling, Chake Marne wala player 😁⚽";
+          break;
+        case "noman":
+          result = "Acha Khelta h pr bohat slow batting krta h chake nhi marta 😭😂";
+          break;
+        case "saad":
+          result = "Chota bomb, bara dhamaka 💣🔥";
+          break;
+        case "husam":
+          result = "Magi krta h aur beech men game chor deta h 😠";
+          break;
+        case "hamza":
+          result = "Batting aur fielding achi krta h pr Bowling thori si khrab h 😄";
+          break;
         default:
-          result = "Naam database mein nahi mila 🤔 Rafay se add karwane ka bol!";
+          result = "Ya to Tumne spelling Galat likhi h ya phir Naam database mein nahi mila 🤔. Add karne ko bolo Rafay ko!";
       }
 
       document.getElementById("result").innerText = result;
     }
+
+    function toggleTeams() {
+      const box = document.getElementById("teamMembers");
+
+      if (box.style.display === "none" || box.innerHTML === "") {
+        box.innerHTML = `
+          <strong>⚡ Zalmi:</strong> Rafay (Captain), Zoyan, Haseeb, Saad, Hamza, Sami<br><br>
+          <strong>🟢 Qalandars:</strong> Ahmed (Captain), Noman, Alijan, Husam, Nafay
+        `;
+        box.style.display = "block";
+      } else {
+        box.innerHTML = "";
+        box.style.display = "none";
+      }
+    }
   </script>
+
 </body>
 </html>
