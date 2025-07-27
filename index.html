@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Name Cricket Personality Checker</title>
+  <title>Cricket Personality & Vote</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -19,12 +19,13 @@
       box-shadow: 0 0 15px rgba(0,0,0,0.3);
     }
 
-    input[type="text"] {
+    input[type="text"], select {
       padding: 12px;
       border-radius: 10px;
       border: none;
       width: 250px;
       font-size: 18px;
+      margin-top: 10px;
     }
 
     button {
@@ -38,9 +39,9 @@
       cursor: pointer;
     }
 
-    #result {
+    #result, #voteList {
       margin-top: 25px;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: bold;
     }
   </style>
@@ -48,61 +49,84 @@
 <body>
 
   <div class="container">
-    <h1>🔎 Cricket Personality Checker</h1>
-    <input type="text" id="nameInput" placeholder="Write your name here">
+    <h1>🏏 Cricket Personality & Vote</h1>
+
+    <!-- Shared Input -->
+    <input type="text" id="sharedNameInput" placeholder="Enter your name">
     <br>
-    <button onclick="checkName()">Tell Me!</button>
+    <button onclick="checkName()">Check Personality</button>
     <div id="result"></div>
+
+    <!-- Voting Section -->
+    <br><br>
+    <h2>🗳️ Vote for Your Team</h2>
+    <select id="voteSelect">
+      <option value="">--Vote For--</option>
+      <option value="Zalmi">⚡ Zalmi</option>
+      <option value="Qalandars">🟢 Qalandars</option>
+    </select>
+    <br>
+    <button onclick="submitVote()">Submit Vote</button>
+
+    <h3 style="margin-top: 30px;">📊 Voting List:</h3>
+    <div id="voteList"></div>
   </div>
 
   <script>
     function checkName() {
-      const name = document.getElementById("nameInput").value.trim().toLowerCase();
+      const name = document.getElementById("sharedNameInput").value.trim().toLowerCase();
       let result = "";
 
       switch(name) {
-        case "haseeb":
-          result = "Acha player, cricket sahi khelta h.";
-          break;
-        case "alijan":
-          result = "Good player but Cheating krta h 😆";
-          break;
-        case "zoyan":
-          result = "bhatta bowler but good batter 💪";
-          break;
-        case "ahmed":
-          result = "great player and fast bowler 😅🔥";
-          break;
-        case "nafay":
-          result = "Fankar but good player 😎";
-          break;
-        case "sami":
-          result = "Bss thori kam cricket khelta h, pr achi khelta h .bohat tez bhatte karata h🤙";
-          break;
-        case "rafay":
-          result = "Khatarnak Bowling,Chake Marne wala player 😁⚽";
-          break;
-        case "noman":
-          result = "Acha Khelta h pr bohat slow batting krta h chake nhi marta 😭😂";
-          break;
-         case "saad":
-          result = "Chota bomb, bara dhamaka 💣🔥";
-          break;
-       case "husam":
-          result = "Magi krta h aur beech men game chor deta h😠";
-          break;
-       case "hamza":
-          result = "Batting aur fielding achi krta h pr Bowling thori si khrab h😄";
-          break;
+        case "haseeb": result = "Acha player, cricket sahi khelta h."; break;
+        case "alijan": result = "Good player but Cheating krta h 😆"; break;
+        case "zoyan": result = "Bhatta bowler but good batter 💪"; break;
+        case "ahmed": result = "Great player and fast bowler 😅🔥"; break;
+        case "nafay": result = "Fankar but good player 😎"; break;
+        case "sami": result = "Thori kam cricket khelta h, pr achi khelta h. Tez bhatte krta h 🤙"; break;
+        case "rafay": result = "Khatarnak Bowling, Chake Marne wala player 😁⚽"; break;
+        case "noman": result = "Acha Khelta h pr slow batting krta h 😭😂"; break;
+        case "saad": result = "Chota bomb, bara dhamaka 💣🔥"; break;
+        case "husam": result = "Magi krta h aur beech men game chor deta h 😠"; break;
+        case "hamza": result = "Batting aur fielding achi, bowling thori weak 😄"; break;
         default:
-          result = "Ya to Tumne spelling Galat likhi h ya phir Naam database mein nahi mila 🤔. Add karne ko bolo Rafay ko!";
+          result = "Naam database mein nahi mila 🤔 Rafay se add karwane ka bol!";
       }
 
       document.getElementById("result").innerText = result;
     }
-  </script>
 
+    function submitVote() {
+      const name = document.getElementById("sharedNameInput").value.trim();
+      const vote = document.getElementById("voteSelect").value;
+
+      if (!name || !vote) {
+        alert("Please enter your name and select a team to vote!");
+        return;
+      }
+
+      let votes = JSON.parse(localStorage.getItem("votes")) || [];
+
+      const existing = votes.find(v => v.name.toLowerCase() === name.toLowerCase());
+      if (existing) {
+        alert("You already voted!");
+        return;
+      }
+
+      votes.push({ name, vote });
+      localStorage.setItem("votes", JSON.stringify(votes));
+
+      alert(`${name} voted for ${vote}!`);
+      showVotes();
+    }
+
+    function showVotes() {
+      const votes = JSON.parse(localStorage.getItem("votes")) || [];
+      const voteList = votes.map(v => `• ${v.name} → ${v.vote}`).join("<br>");
+      document.getElementById("voteList").innerHTML = voteList || "No votes yet.";
+    }
+
+    window.onload = showVotes;
+  </script>
 </body>
 </html>
-
-
