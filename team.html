@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Team Members</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #1d4350, #a43931);
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    .team-row {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+    }
+
+    .team-column {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .team-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .player {
+      font-size: 18px;
+      margin: 8px 0;
+    }
+
+    .divider {
+      width: 2px;
+      background: white;
+      height: auto;
+    }
+
+    .vertical-label {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #ffd700;
+    }
+
+    a button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #ff4b2b;
+      border: none;
+      color: white;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>👥 Cricket Teams</h1>
+
+    <div class="team-row">
+      <div class="team-column">
+        <div class="vertical-label">TEAM</div>
+        <div class="team-title">⚡ Zalmi</div>
+        <div class="player">Rafay (Captain)</div>
+        <div class="player">Zoyan</div>
+        <div class="player">Haseeb</div>
+        <div class="player">Saad</div>
+        <div class="player">Hamza</div>
+        <div class="player">Sami</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="team-column">
+        <div class="vertical-label">TEAM</div>
+        <div class="team-title">🟢 Qalandars</div>
+        <div class="player">Ahmed (Captain)</div>
+        <div class="player">Noman</div>
+        <div class="player">Alijan</div>
+        <div class="player">Husam</div>
+        <div class="player">Nafay</div>
+      </div>
+    </div>
+
+    <a href="index.html"><button>🏠 Back to Home</button></a>
+  </div>
+
+</body>
+</html>
