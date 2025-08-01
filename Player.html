@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Player Info</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #1d4350, #a43931);
+      color: white;
+      padding: 20px;
+      margin: 0;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin-top: 20px;
+    }
+
+    table {
+      width: 100%;
+      max-width: 900px;
+      margin: auto;
+      border-collapse: collapse;
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid white;
+      font-size: 14px;
+    }
+
+    th {
+      background-color: rgba(0,0,0,0.3);
+    }
+
+    tr:nth-child(even) {
+      background-color: rgba(255,255,255,0.05);
+    }
+
+    a button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #ff4b2b;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🏏 Gully Cricket Players</h1>
+
+  <div class="table-container">
+    <table id="playerTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Type</th>
+          <th>Bat Hand</th>
+          <th>Bowl Hand</th>
+          <th>Gender</th>
+          <th>Date of Birth</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Rafay</td>
+          <td data-dob="2012-08-16"></td>
+          <td>Fast Bowler</td>
+          <td>Right</td>
+          <td>Right</td>
+          <td>Male</td>
+          <td>2012-08-16</td>
+        </tr>
+        <tr>
+          <td>Zoyan</td>
+          <td data-dob="2014-05-26"></td>
+          <td>Batsman</td>
+          <td>Right</td>
+          <td>Spin</td>
+          <td>Male</td>
+          <td>2014-05-26</td>
+        </tr>
+        <tr>
+          <td>Ahmed</td>
+          <td data-dob="2024-03-01"></td>
+          <td>All-Rounder</td>
+          <td>Right</td>
+          <td>Fast</td>
+          <td>Male</td>
+          <td>2024-03-01</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <a href="index.html"><button>🏠 Back to Home</button></a>
+
+  <script>
+    function calculateAge(dob) {
+      const birth = new Date(dob);
+      const today = new Date();
+      let age = today.getFullYear() - birth.getFullYear();
+      const m = today.getMonth() - birth.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
+        age--;
+      }
+      return age;
+    }
+
+    document.querySelectorAll('[data-dob]').forEach(cell => {
+      const dob = cell.getAttribute('data-dob');
+      cell.innerText = calculateAge(dob);
+    });
+  </script>
+
+</body>
+</html>
