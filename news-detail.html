@@ -1,64 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Gully Cricket News - Detail</title>
+  <title>News Detail – Gully Cricket News</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #1d4350, #a43931);
+      background-color: #000;
       color: white;
       padding: 20px;
-      margin: 0;
-      text-align: center;
     }
 
     .container {
       max-width: 800px;
       margin: auto;
-      background: rgba(255,255,255,0.1);
-      padding: 30px 25px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.4);
-    }
-
-    img.logo {
-      max-width: 150px;
-      margin-bottom: 20px;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 30px 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
     }
 
     h1 {
       font-size: 26px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      text-align: center;
     }
 
     p {
-      text-align: left;
       font-size: 16px;
       line-height: 1.8;
-      margin-bottom: 18px;
+      color: #ddd;
     }
 
-    .button {
+    .highlight {
+      font-weight: bold;
+      color: gold;
+    }
+
+    .back-btn {
       margin-top: 30px;
+      text-align: center;
     }
 
-    .button a {
-      text-decoration: none;
-    }
-
-    .button a button {
-      padding: 10px 20px;
+    .back-btn a button {
       background-color: #000;
       color: white;
-      border: 2px solid transparent;
+      padding: 10px 20px;
       border-radius: 10px;
+      border: 2px solid white;
       font-size: 16px;
       cursor: pointer;
-      transition: 0.3s ease;
+      transition: 0.3s;
     }
 
-    .button a button:hover {
+    .back-btn a button:hover {
       border: 2px solid gold;
     }
   </style>
@@ -66,25 +62,27 @@
 <body>
 
   <div class="container">
-    <img src="logo.png" alt="Gully Cricket News Logo" class="logo" />
-    <h1>📄 Full Story: Mobile Gaya, Trust Toota?</h1>
+    <h1>Husam Par Ban Kiun Laga?</h1>
 
-    <p>Gully cricket ki duniya mein ek nayi musibat... Jab Alijan ka mobile achanak ghaib ho gaya.</p>
-    <p>Is incident ke baad sabse zyada shak gaya... ek teammate par — Husam.</p>
-    <p>Us din Husam ko aakhri baar Alijan ke paas dekha gaya tha... Aur uske baad se uska rawayya kuch alag tha.</p>
-    <p>Jab us se baat karni chahi gayi... wo achanak door chala gaya. Ye sab us waqt hua jab mobile gayab tha.</p>
-    <p>Zalmi ke captain Rafay ne ek clear decision liya...</p>
-    <p><i>"Jab tak scene clear nahi hota, Husam match nahi khelega. Team se upar koi nahi hai."</i> – Rafay</p>
-    <p>Mobile sirf ek device nahi... ek zimmedari thi. Alijan ne kaha:</p>
-    <p><i>"Agar kisi ne galti se bhi le liya hai, to wapas de de. Main blame nahi kar raha."</i></p>
-    <p>Ahmed, jo sirf Alijan ka bhai hi nahi... Qalandars ka captain bhi hai — usne bhi apna bayan diya:</p>
-    <p><i>"Main kisi par ilzaam nahi laga raha... Bas ye chahta hoon ke sach saamne aaye."</i></p>
-    <p>Trust... gully cricket mein sirf runs ya wickets nahi, izzat bhi hoti hai.</p>
-    <p>Ek mobile gayab hua... Lekin iske peechay chhupi kahani sab janna chahte hain.</p>
-    <p><b>Kya Husam wapas aayega? Kya mobile mil payega? Kya team ka trust wapas banega?</b></p>
-    <p>Ye sirf cricket nahi... Ye hai gully ka faisla.</p>
+    <p><span class="highlight">Gully cricket</span> ki duniya mein ek nayi musibat us waqt shuru hui jab <span class="highlight">Alijan ka mobile achanak ghaib ho gaya</span>.</p>
 
-    <div class="button">
+    <p>Is incident ke baad sabse zyada shak gaya ek teammate par — <span class="highlight">Husam</span>.</p>
+
+    <p>Us din Husam ko aakhri baar Alijan ke paas dekha gaya tha, aur uske baad se uska rawayya kuch alag tha. Jab usse baat karne ki koshish ki gayi, to wo achanak door chala gaya. Ye sab us waqt hua jab mobile ghaib tha.</p>
+
+    <p><span class="highlight">Zalmi ke captain Rafay</span> ne turant decision liya: <em>“Jab tak scene clear nahi hota, Husam match nahi khelega. Team se upar koi nahi hai.”</em></p>
+
+    <p><span class="highlight">Alijan</span>, jiska mobile chala gaya tha, ne kaha: <em>“Agar kisi ne galti se bhi le liya hai to wapas de de. Main blame nahi kar raha.”</em></p>
+
+    <p><span class="highlight">Ahmed</span> — Alijan ka bhai aur <span class="highlight">Qalandars ke captain</span> — ne bhi bayan diya: <em>“Main kisi par ilzaam nahi laga raha, bas ye chahta hoon ke sach saamne aaye.”</em></p>
+
+    <p>Trust... gully cricket mein sirf runs ya wickets nahi, izzat bhi hoti hai. Ek mobile gaya, lekin team ka bharosa bhi tut gaya.</p>
+
+    <p>Ab sabki nazar hai is faislay par. Kya Husam wapas aayega? Kya mobile milega? Kya team ka trust wapas banega?</p>
+
+    <p><strong>Ye sirf cricket nahi... ye hai gully ka faisla.</strong></p>
+
+    <div class="back-btn">
       <a href="news.html"><button>⬅️ Back to News</button></a>
     </div>
   </div>
