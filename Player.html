@@ -6,7 +6,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #1d4350, #a43931);
+      background-color: #000;
       color: white;
       padding: 20px;
       margin: 0;
@@ -43,6 +43,13 @@
       background-color: rgba(255,255,255,0.05);
     }
 
+    .scroll-message {
+      color: #fff;
+      font-size: 14px;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
     a button {
       margin-top: 30px;
       padding: 10px 20px;
@@ -52,19 +59,23 @@
       border-radius: 10px;
       font-size: 16px;
       cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    a button:hover {
+      outline: 2px solid gold;
+      box-shadow: 0 0 10px gold;
+      background-color: #ff1c00;
     }
   </style>
 </head>
 <body>
 
-  <h1>🏏 Gully Cricket Players</h1>
+  <h1>Gully Cricket Players</h1>
 
- <div class="table-container">
-  <p style="color: #fff; font-size: 14px; font-style: italic; margin-bottom: 10px;">
-    👉 <b>Scroll this side</b> for more information →
-  </p>
-  <table id="playerTable">
-
+  <div class="table-container">
+    <p class="scroll-message">Scroll this side → for more information</p>
+    <table id="playerTable">
       <thead>
         <tr>
           <th>Name</th>
@@ -78,111 +89,25 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Rafay</td>
-          <td>10</td>
-          <td data-dob="2012-08-16"></td>
-          <td>All-Rounder</td>
-          <td>Right</td>
-          <td>Right Arm Fast</td>
-          <td>Male</td>
-          <td>2012-08-16</td>
-        </tr>
-        <tr>
-          <td>Ahmed</td>
-          <td>07</td>
-          <td data-dob="2024-03-01"></td>
-          <td>All-Rounder</td>
-          <td>Right</td>
-          <td>Right Arm Fast</td>
-          <td>Male</td>
-          <td>2014-03-01</td>
-        </tr>
-        <tr>
-          <td>Nafay</td>
-          <td>71</td>
-          <td data-dob="2014-12-14"></td>
-          <td>All-Rounder</td>
-          <td>Right</td>
-          <td>Right Arm Medium</td>
-          <td>Male</td>
-          <td>2015-12-14</td>
-        </tr>
-        <tr>
-          <td>Zoyan</td>
-          <td>18</td>
-          <td data-dob="2014-05-26"></td>
-          <td>Batsman</td>
-          <td>Right</td>
-          <td>Right Arm Bhatta</td>
-          <td>Male</td>
-          <td>2015-05-26</td>
-        </tr>
-        <tr>
-          <td>Alijan</td>
-          <td>56</td>
-          <td data-dob="2012-06-06"></td>
-          <td>All-Rounder</td>
-          <td>Right</td>
-          <td>Right Arm Medium Fast</td>
-          <td>Male</td>
-          <td>2012-06-06</td>
-        </tr>
-            <tr>
-          <td>Hamza</td>
-          <td>5</td>
-          <td data-dob="No Data"></td>
-          <td>All-Rounder</td>
-          <td>Right</td>
-          <td>Right Arm Slow</td>
-          <td>Male</td>
-          <td>No Data</td>
-        </tr>
-            <tr>
-          <td>Haseeb</td>
-          <td>9</td>
-          <td data-dob="2012-01-09"></td>
-          <td>Batsman</td>
-          <td>Right</td>
-          <td>Right Arm Bhatta</td>
-          <td>Male</td>
-          <td>2012-01-09</td>
-                  <tr>
-          <td>Sami</td>
-          <td>1</td>
-          <td data-dob="No Data"></td>
-          <td>Batsman</td>
-          <td>Right</td>
-          <td>Right Arm Bhatta</td>
-          <td>Male</td>
-          <td>No Data</td>
-                     <tr>
-          <td>Saad</td>
-          <td>19</td>
-          <td data-dob="2017-03-01"></td>
-          <td>Batsman</td>
-          <td>Right</td>
-          <td>Right Arm Bhatta</td>
-          <td>Male</td>
-          <td>2017-03-01</td>
-                        <tr>
-          <td>Noman</td>
-          <td>8</td>
-          <td data-dob="No Data"></td>
-          <td>Batsman</td>
-          <td>Right</td>
-          <td>Right Arm Bhatta</td>
-          <td>Male</td>
-          <td>No Data</td>
-        </tr>
+        <tr><td>Rafay</td><td>10</td><td data-dob="2012-08-16"></td><td>All-Rounder</td><td>Right</td><td>Right Arm Fast</td><td>Male</td><td>2012-08-16</td></tr>
+        <tr><td>Ahmed</td><td>07</td><td data-dob="2024-03-01"></td><td>All-Rounder</td><td>Right</td><td>Right Arm Fast</td><td>Male</td><td>2024-03-01</td></tr>
+        <tr><td>Nafay</td><td>71</td><td data-dob="2014-12-14"></td><td>All-Rounder</td><td>Right</td><td>Right Arm Medium</td><td>Male</td><td>2014-12-14</td></tr>
+        <tr><td>Zoyan</td><td>18</td><td data-dob="2014-05-26"></td><td>Batsman</td><td>Right</td><td>Right Arm Bhatta</td><td>Male</td><td>2014-05-26</td></tr>
+        <tr><td>Alijan</td><td>56</td><td data-dob="2012-06-06"></td><td>All-Rounder</td><td>Right</td><td>Right Arm Medium Fast</td><td>Male</td><td>2012-06-06</td></tr>
+        <tr><td>Hamza</td><td>5</td><td data-dob="No Data"></td><td>All-Rounder</td><td>Right</td><td>Right Arm Slow</td><td>Male</td><td>No Data</td></tr>
+        <tr><td>Haseeb</td><td>9</td><td data-dob="2012-01-09"></td><td>Batsman</td><td>Right</td><td>Right Arm Bhatta</td><td>Male</td><td>2012-01-09</td></tr>
+        <tr><td>Sami</td><td>1</td><td data-dob="No Data"></td><td>Batsman</td><td>Right</td><td>Right Arm Bhatta</td><td>Male</td><td>No Data</td></tr>
+        <tr><td>Saad</td><td>19</td><td data-dob="2017-03-01"></td><td>Batsman</td><td>Right</td><td>Right Arm Bhatta</td><td>Male</td><td>2017-03-01</td></tr>
+        <tr><td>Noman</td><td>8</td><td data-dob="No Data"></td><td>Batsman</td><td>Right</td><td>Right Arm Bhatta</td><td>Male</td><td>No Data</td></tr>
       </tbody>
     </table>
   </div>
 
-  <a href="index.html"><button>🏠 Back to Home</button></a>
+  <a href="index.html"><button>Back to Home</button></a>
 
   <script>
     function calculateAge(dob) {
+      if (!dob || dob === "No Data") return "N/A";
       const birth = new Date(dob);
       const today = new Date();
       let age = today.getFullYear() - birth.getFullYear();
