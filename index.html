@@ -2,33 +2,23 @@
 <html>
 <head>
   <title>Cricket Personality & Voting</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
       padding: 0;
+      overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
       background-color: #000;
       color: white;
       text-align: center;
-      overflow-x: hidden;
     }
 
-    .floating-emoji {
+    .emoji {
       position: absolute;
-      font-size: 32px;
-      animation: float 20s linear infinite;
-      opacity: 0.2;
+      font-size: 30px;
       z-index: 0;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0px) translateX(0px) rotate(0deg);
-      }
-      100% {
-        transform: translateY(-100vh) translateX(100vw) rotate(360deg);
-      }
+      pointer-events: none;
     }
 
     .container {
@@ -41,7 +31,7 @@
       box-shadow: 0 0 20px rgba(255,255,255,0.1);
       max-width: 95%;
       width: 100%;
-      margin-top: 60px;
+      margin: 80px auto;
     }
 
     h2 {
@@ -101,23 +91,8 @@
 </head>
 <body>
 
-  <!-- Floating Emojis -->
-  <div class="floating-emoji" style="top: 80%; left: 10%;">🏏</div>
-  <div class="floating-emoji" style="top: 90%; left: 50%;">🏏</div>
-  <div class="floating-emoji" style="top: 85%; left: 80%;">🏏</div>
-  <div class="floating-emoji" style="top: 95%; left: 30%;">🏏</div>
-<div class="floating-emoji" style="top: 80%; left: 10%;">🏏</div>
-<div class="floating-emoji" style="top: 90%; left: 50%;">🏏</div>
-<div class="floating-emoji" style="top: 85%; left: 80%;">🏏</div>
-<div class="floating-emoji" style="top: 95%; left: 30%;">🏏</div>
-<div class="floating-emoji" style="top: 78%; left: 20%;">🏏</div>
-<div class="floating-emoji" style="top: 88%; left: 70%;">🏏</div>
-<div class="floating-emoji" style="top: 92%; left: 40%;">🏏</div>
-<div class="floating-emoji" style="top: 86%; left: 60%;">🏏</div>
-<div class="floating-emoji" style="top: 94%; left: 15%;">🏏</div>
-<div class="floating-emoji" style="top: 89%; left: 85%;">🏏</div>
-<div class="floating-emoji" style="top: 91%; left: 35%;">🏏</div>
-<div class="floating-emoji" style="top: 96%; left: 65%;">🏏</div>
+  <!-- Emoji Container -->
+  <div id="emoji-container"></div>
 
   <div class="container">
     <h2>🔎 Cricket Personality Checker</h2>
@@ -141,47 +116,61 @@
       let result = "";
 
       switch(name) {
-        case "haseeb":
-          result = "Acha player, cricket sahi khelta h.";
-          break;
-        case "alijan":
-          result = "Good player but Cheating krta h 😆";
-          break;
-        case "zoyan":
-          result = "Bhatta bowler but good batter 💪";
-          break;
-        case "ahmed":
-          result = "Great player and fast bowler 😅🔥";
-          break;
-        case "nafay":
-          result = "Fankar but good player 😎";
-          break;
-        case "sami":
-          result = "Thori kam cricket khelta h, pr achi khelta h. Bohat tez bhatte karta h 🤙";
-          break;
-        case "rafay":
-          result = "Khatarnak Bowling, Chake Marne wala player 😁⚽";
-          break;
-        case "noman":
-          result = "Acha khelta h pr slow batting karta h, chakka nahi marta 😭😂";
-          break;
-        case "saad":
-          result = "Chota bomb, bara dhamaka 💣🔥";
-          break;
-        case "husam":
-          result = "Magi krta h aur beech mein game chor deta h 😠";
-          break;
-        case "hamza":
-          result = "Batting aur fielding achi, bowling thori weak 😄";
-          break;
+        case "haseeb": result = "Acha player, cricket sahi khelta h."; break;
+        case "alijan": result = "Good player but Cheating krta h 😆"; break;
+        case "zoyan": result = "Bhatta bowler but good batter 💪"; break;
+        case "ahmed": result = "Great player and fast bowler 😅🔥"; break;
+        case "nafay": result = "Fankar but good player 😎"; break;
+        case "sami": result = "Thori kam cricket khelta h, pr achi khelta h. Bohat tez bhatte karta h 🤙"; break;
+        case "rafay": result = "Khatarnak Bowling, Chake Marne wala player 😁⚽"; break;
+        case "noman": result = "Acha khelta h pr slow batting karta h, chakka nahi marta 😭😂"; break;
+        case "saad": result = "Chota bomb, bara dhamaka 💣🔥"; break;
+        case "husam": result = "Magi krta h aur beech mein game chor deta h 😠"; break;
+        case "hamza": result = "Batting aur fielding achi, bowling thori weak 😄"; break;
         default:
           result = "Ya to tumne spelling galat likhi h ya naam database mein nahi mila 🤔. Rafay se bolo add kar de!";
       }
 
       document.getElementById("result").innerText = result;
     }
+
+    // Floating emoji logic
+    const emojis = [];
+    const numEmojis = 12;
+
+    for (let i = 0; i < numEmojis; i++) {
+      const el = document.createElement('div');
+      el.className = 'emoji';
+      el.innerText = '🏏';
+      document.body.appendChild(el);
+
+      const emoji = {
+        el: el,
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        dx: (Math.random() - 0.5) * 1.5,
+        dy: (Math.random() - 0.5) * 1.5
+      };
+      emojis.push(emoji);
+    }
+
+    function animateEmojis() {
+      emojis.forEach(e => {
+        e.x += e.dx;
+        e.y += e.dy;
+
+        if (e.x < 0 || e.x > window.innerWidth - 30) e.dx *= -1;
+        if (e.y < 0 || e.y > window.innerHeight - 30) e.dy *= -1;
+
+        e.el.style.left = e.x + 'px';
+        e.el.style.top = e.y + 'px';
+      });
+
+      requestAnimationFrame(animateEmojis);
+    }
+
+    animateEmojis();
   </script>
 
 </body>
 </html>
-
