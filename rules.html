@@ -9,26 +9,16 @@
       background-color: #000;
       color: white;
       text-align: center;
+      padding: 20px;
       margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .emoji {
-      position: absolute;
-      font-size: 28px;
-      z-index: 0;
-      pointer-events: none;
     }
 
     .container {
-      position: relative;
-      z-index: 2;
-      background: rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.08);
       padding: 30px 20px;
       border-radius: 20px;
       max-width: 90%;
-      margin: 50px auto;
+      margin: auto;
       box-shadow: 0 0 20px rgba(255,255,255,0.1);
     }
 
@@ -45,12 +35,17 @@
       padding-left: 0;
     }
 
-    li::before {
-      content: "👉 ";
-    }
-
     li {
       margin-bottom: 10px;
+      padding-left: 10px;
+      position: relative;
+    }
+
+    li::before {
+      content: "- ";
+      position: absolute;
+      left: 0;
+      color: gold;
     }
 
     .buttons {
@@ -80,11 +75,8 @@
 </head>
 <body>
 
-  <!-- Floating Emojis -->
-  <div id="emoji-container"></div>
-
   <div class="container">
-    <h1>📋 Gully Cricket Rules</h1>
+    <h1>Gully Cricket Rules</h1>
     <ul>
       <li>Ball kutton wale ghar mein gaya → jisne maara wo akela layega + -3 runs. Nahi laya to OUT.</li>
       <li>Ball diwaar se lag ke catch → OUT.</li>
@@ -98,52 +90,14 @@
       <li>Running dusre ke liye kar sakte ho.</li>
       <li>Umpire ki baat final hai.</li>
       <li>Cheating nahi chalegi, umpire bhi fair hoga.</li>
-      <li>Batting ki lalach nahi karni 😤</li>
+      <li>Batting ki lalach nahi karni</li>
     </ul>
 
     <div class="buttons">
-      <a href="vote.html"><button>⬅️ Back to Voting</button></a>
-      <a href="index.html"><button>🏠 Back to Home</button></a>
+      <a href="vote.html"><button>Back to Voting</button></a>
+      <a href="index.html"><button>Back to Home</button></a>
     </div>
   </div>
-
-  <script>
-    const emojis = [];
-    const numEmojis = 10;
-
-    for (let i = 0; i < numEmojis; i++) {
-      const el = document.createElement('div');
-      el.className = 'emoji';
-      el.innerText = '🏏';
-      document.body.appendChild(el);
-
-      const emoji = {
-        el: el,
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        dx: (Math.random() - 0.5) * 1.2,
-        dy: (Math.random() - 0.5) * 1.2
-      };
-      emojis.push(emoji);
-    }
-
-    function animateEmojis() {
-      emojis.forEach(e => {
-        e.x += e.dx;
-        e.y += e.dy;
-
-        if (e.x < 0 || e.x > window.innerWidth - 30) e.dx *= -1;
-        if (e.y < 0 || e.y > window.innerHeight - 30) e.dy *= -1;
-
-        e.el.style.left = e.x + 'px';
-        e.el.style.top = e.y + 'px';
-      });
-
-      requestAnimationFrame(animateEmojis);
-    }
-
-    animateEmojis();
-  </script>
 
 </body>
 </html>
