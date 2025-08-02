@@ -6,7 +6,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #000;
+      background: linear-gradient(to right, #1d4350, #a43931);
       color: white;
       padding: 20px;
       margin: 0;
@@ -14,68 +14,71 @@
     }
 
     .container {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.1);
       padding: 30px 20px;
       border-radius: 20px;
-      max-width: 90%;
+      max-width: 800px;
       margin: auto;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    img.logo {
+      max-width: 150px;
+      margin-bottom: 20px;
     }
 
     h1 {
-      margin-bottom: 20px;
       font-size: 26px;
+      margin-bottom: 10px;
     }
 
-    .news-box {
+    h2 {
+      font-size: 20px;
+      margin-bottom: 30px;
+      font-weight: normal;
+    }
+
+    .button {
       margin-top: 20px;
-      text-align: left;
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 15px;
-      font-size: 16px;
-      line-height: 1.6;
     }
 
-    .news-box strong {
-      color: #00ff88;
+    .button a {
+      text-decoration: none;
     }
 
-    .buttons {
-      margin-top: 30px;
-    }
-
-    a button {
-      margin: 10px;
+    .button a button {
       padding: 10px 20px;
-      background-color: #ff4b2b;
+      background-color: #000;
       color: white;
-      border: none;
+      border: 2px solid transparent;
       border-radius: 10px;
       font-size: 16px;
       cursor: pointer;
       transition: 0.3s ease;
     }
 
-    a button:hover {
-      outline: 2px solid gold;
-      box-shadow: 0 0 10px gold;
-      background-color: #ff1c00;
+    .button a button:hover,
+    .button a button:focus {
+      border: 2px solid gold;
+      outline: none;
+    }
+
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 17px;
+      }
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <h1>Gully Cricket News</h1>
+    <img src="logo.png" alt="Gully Cricket News Logo" class="logo" />
+    <h1>📢 Breaking News</h1>
+    <h2>Husam Par Ban Kyun Laga? Sirf Cricket Nahi, Yeh Hai Gully Ka Faisla...</h2>
 
-    <div class="news-box">
-      <strong>BREAKING:</strong> Jab tak <b>Alijan</b> ka mobile nahi milta, <b>Husam</b> nahi khelega!  
-      <br><br>
-      <a href="news-detail.html"><button>📖 Zyada Jankari ke liye idhar Tap karen</button></a>
-    </div>
-
-    <div class="buttons">
+    <div class="button">
+      <a href="news-detail.html"><button>📄 Read Full Story</button></a><br><br>
       <a href="index.html"><button>🏠 Back to Home</button></a>
     </div>
   </div>
