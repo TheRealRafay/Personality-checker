@@ -11,25 +11,15 @@
       text-align: center;
       padding: 20px;
       margin: 0;
-      overflow: hidden;
-    }
-
-    .emoji {
-      position: absolute;
-      font-size: 28px;
-      z-index: 0;
-      pointer-events: none;
     }
 
     .container {
-      position: relative;
-      z-index: 2;
       background: rgba(255, 255, 255, 0.08);
       padding: 30px 20px;
       border-radius: 20px;
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
       max-width: 90%;
-      margin: 60px auto;
+      margin: auto;
     }
 
     h1 {
@@ -98,27 +88,24 @@
 </head>
 <body>
 
-  <!-- Floating Emojis -->
-  <div id="emoji-container"></div>
-
   <div class="container">
-    <h1>🏏 Gully Cricket Teams</h1>
+    <h1>Gully Cricket Teams</h1>
 
     <div class="teams">
       <div class="team-box">
-        <div class="team-title">⚡ Zalmi</div>
+        <div class="team-title">Zalmi</div>
         <ul>
           <li>Rafay (C)</li>
           <li>Haseeb</li>
           <li>Saad</li>
           <li>Hamza</li>
-          <li>Sami -- Not Available</li>
+          <li>Sami – Not Available</li>
           <li>Not Confirmed</li>
         </ul>
       </div>
 
       <div class="team-box">
-        <div class="team-title">🟢 Qalandars</div>
+        <div class="team-title">Qalandars</div>
         <ul>
           <li>Ahmed (C)</li>
           <li>Noman</li>
@@ -129,46 +116,8 @@
       </div>
     </div>
 
-    <a href="index.html"><button>🏠 Back to Home</button></a>
+    <a href="index.html"><button>Back to Home</button></a>
   </div>
-
-  <script>
-    const emojis = [];
-    const numEmojis = 10;
-
-    for (let i = 0; i < numEmojis; i++) {
-      const el = document.createElement('div');
-      el.className = 'emoji';
-      el.innerText = Math.random() > 0.5 ? '🏏' : '🏏';
-      document.body.appendChild(el);
-
-      const emoji = {
-        el: el,
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        dx: (Math.random() - 0.5) * 1.2,
-        dy: (Math.random() - 0.5) * 1.2
-      };
-      emojis.push(emoji);
-    }
-
-    function animateEmojis() {
-      emojis.forEach(e => {
-        e.x += e.dx;
-        e.y += e.dy;
-
-        if (e.x < 0 || e.x > window.innerWidth - 30) e.dx *= -1;
-        if (e.y < 0 || e.y > window.innerHeight - 30) e.dy *= -1;
-
-        e.el.style.left = e.x + 'px';
-        e.el.style.top = e.y + 'px';
-      });
-
-      requestAnimationFrame(animateEmojis);
-    }
-
-    animateEmojis();
-  </script>
 
 </body>
 </html>
