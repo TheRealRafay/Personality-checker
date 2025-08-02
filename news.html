@@ -5,68 +5,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #1d4350, #a43931);
+      background-color: #000;
       color: white;
       padding: 20px;
-      margin: 0;
       text-align: center;
     }
 
     .container {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255,255,255,0.05);
       padding: 30px 20px;
-      border-radius: 20px;
+      border-radius: 15px;
       max-width: 800px;
       margin: auto;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
     }
 
     img.logo {
-      max-width: 150px;
+      max-width: 140px;
       margin-bottom: 20px;
     }
 
     h1 {
       font-size: 26px;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
-    h2 {
-      font-size: 20px;
-      margin-bottom: 30px;
-      font-weight: normal;
+    .news-box {
+      background-color: rgba(255,255,255,0.08);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
     }
 
-    .button {
-      margin-top: 20px;
+    .news-box h3 {
+      margin-top: 0;
     }
 
-    .button a {
-      text-decoration: none;
+    .news-box p {
+      font-size: 16px;
+      color: #ddd;
     }
 
-    .button a button {
+    .news-box a button {
+      margin-top: 15px;
       padding: 10px 20px;
       background-color: #000;
       color: white;
       border: 2px solid transparent;
-      border-radius: 10px;
-      font-size: 16px;
+      border-radius: 8px;
+      font-size: 14px;
       cursor: pointer;
       transition: 0.3s ease;
     }
 
-    .button a button:hover,
-    .button a button:focus {
+    .news-box a button:hover {
       border: 2px solid gold;
-      outline: none;
     }
 
-    @media (max-width: 600px) {
-      h2 {
-        font-size: 17px;
-      }
+    .back-home {
+      margin-top: 30px;
+    }
+
+    .back-home a button {
+      background-color: #000;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: 2px solid white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .back-home a button:hover {
+      border: 2px solid gold;
     }
   </style>
 </head>
@@ -74,11 +87,15 @@
 
   <div class="container">
     <img src="logo.png" alt="Gully Cricket News Logo" class="logo" />
-    <h1>📢 Breaking News</h1>
-    <h2>Husam Par Ban Kyun Laga? Sirf Cricket Nahi, Yeh Hai Gully Ka Faisla...</h2>
+    <h1>📰 Gully Cricket News</h1>
 
-    <div class="button">
-      <a href="news-detail.html"><button>📄 Read Full Story</button></a><br><br>
+    <div class="news-box">
+      <h3>Husam Par Ban Kiun Laga?</h3>
+      <p>Gully cricket mein ek shocking moment...Husam Pr Ban!</p>
+      <a href="news-detail.html"><button>See More</button></a>
+    </div>
+
+    <div class="back-home">
       <a href="index.html"><button>🏠 Back to Home</button></a>
     </div>
   </div>
