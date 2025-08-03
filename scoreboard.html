@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gully Cricket Scoreboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      width: 200px;
+    }
+
+    .score-buttons button, .bottom-buttons button, .back-button {
+      padding: 10px 20px;
+      margin: 10px;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .score-buttons button:hover, .bottom-buttons button:hover, .back-button:hover {
+      outline: 2px solid gold;
+    }
+
+    #scoreDisplay {
+      font-size: 22px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🏏 Gully Cricket Live Scoreboard</h1>
+
+  <div>
+    <input type="text" id="batter" placeholder="Batter Name">
+    <input type="text" id="bowler" placeholder="Bowler Name">
+    <input type="text" id="fielder" placeholder="Fielder (if catch)">
+  </div>
+
+  <div class="score-buttons">
+    <button onclick="addRuns(1)">1 Run</button>
+    <button onclick="addRuns(2)">2 Runs</button>
+    <button onclick="addRuns(3)">3 Runs</button>
+    <button onclick="addRuns(4)">4 Runs</button>
+    <button onclick="addRuns(5)">5 Runs</button>
+    <button onclick="addRuns(6)">6 Runs</button>
+    <button onclick="addWicket()">Wicket</button>
+    <button onclick="addWide()">Wide +1</button>
+  </div>
+
+  <div id="scoreDisplay">Score: 0/0</div>
+
+  <div class="bottom-buttons">
+    <button onclick="resetScore()">Reset Score</button>
+  </div>
+
+  <!-- Back to Home with confirmation -->
+  <button class="back-button" onclick="confirmBack()">⬅️ Back to Home</button>
+
+  <script>
+    let runs = 0;
+    let wickets = 0;
+
+    function updateDisplay() {
+      document.getElementById("scoreDisplay").innerText = `Score: ${runs}/${wickets}`;
+    }
+
+    function addRuns(r) {
+      runs += r;
+      updateDisplay();
+    }
+
+    function addWicket() {
+      alert("❌ OUT!");
+      wickets += 1;
+      updateDisplay();
+    }
+
+    function addWide() {
+      runs += 1;
+      updateDisplay();
+    }
+
+    function resetScore() {
+      if (confirm("Reset the score?")) {
+        runs = 0;
+        wickets = 0;
+        updateDisplay();
+      }
+    }
+
+    function confirmBack() {
+      if (confirm("Are you sure you want to go back to Home?")) {
+        window.location.href = "index.html";
+      }
+    }
+  </script>
+
+</body>
+</html>
