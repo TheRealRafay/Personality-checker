@@ -1,151 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gully Cricket Scoreboard</title>
+  <title>Gully Scoreboard Setup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
-      background: #000;
-      color: #fff;
       font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
       text-align: center;
-      padding: 20px;
+      padding: 30px;
     }
 
-    h1 {
-      font-size: 28px;
+    .container {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #333;
+      max-width: 500px;
+      margin: auto;
     }
 
-    input, select {
-      padding: 10px;
-      margin: 5px;
+    input, button {
+      padding: 12px;
+      margin: 10px 0;
+      width: 90%;
+      font-size: 16px;
       border-radius: 8px;
       border: none;
-      width: 200px;
     }
 
-    .buttons button {
-      padding: 12px 20px;
-      margin: 5px;
-      border: none;
-      background: black;
-      color: white;
-      border-radius: 10px;
-      font-size: 16px;
+    button {
+      background: gold;
+      color: black;
+      font-weight: bold;
       cursor: pointer;
-    }
-
-    .buttons button:hover {
-      outline: 2px solid gold;
-    }
-
-    #scoreboard {
-      font-size: 20px;
-      margin-top: 20px;
-    }
-
-    .section {
-      margin-top: 20px;
-    }
-
-    .back-button {
-      margin-top: 30px;
-      background-color: black;
     }
   </style>
 </head>
 <body>
-
-  <h1>🏏 Gully Cricket Scoreboard</h1>
-
-  <div class="section">
-    <input type="text" id="batter" placeholder="Batter Name">
-    <input type="text" id="bowler" placeholder="Bowler Name">
-    <input type="text" id="fielder" placeholder="Fielder (Catch?)">
-  </div>
-
-  <div class="section">
-    <label>Overs:</label>
-    <input type="number" id="currentOver" value="0" style="width: 60px;">
-    /
-    <input type="number" id="totalOvers" value="5" style="width: 60px;">
-  </div>
-
-  <div class="buttons">
-    <button onclick="addRuns(1)">1 Run</button>
-    <button onclick="addRuns(2)">2 Runs</button>
-    <button onclick="addRuns(3)">3 Runs</button>
-    <button onclick="addRuns(4)">4 Runs</button>
-    <button onclick="addRuns(5)">5 Runs</button>
-    <button onclick="addRuns(6)">6 Runs</button>
-    <button onclick="addWide()">Wide +1</button>
-    <button onclick="addWicket()">Wicket</button>
-    <button onclick="resetScore()">Reset</button>
-  </div>
-
-  <div id="scoreboard">Score: 0/0</div>
-  <div id="tossResult" class="section"></div>
-
-  <div class="buttons">
-    <button onclick="toss()">Toss</button>
-    <button class="back-button" onclick="goBack()">⬅️ Back to Home</button>
+  <div class="container">
+    <h2>🏏 Gully Cricket Scoreboard Setup</h2>
+    <input id="team1" placeholder="Enter Team 1 Name" />
+    <input id="team2" placeholder="Enter Team 2 Name" />
+    <input id="players" type="number" placeholder="Players Per Team (e.g. 4)" />
+    <input id="overs" type="number" placeholder="Total Overs (e.g. 2)" />
+    <button onclick="startMatch()">Start Match</button>
   </div>
 
   <script>
-    let runs = 0;
-    let wickets = 0;
+    function startMatch() {
+      const t1 = document.getElementById("team1").value.trim();
+      const t2 = document.getElementById("team2").value.trim();
+      const players = parseInt(document.getElementById("players").value);
+      const overs = parseInt(document.getElementById("overs").value);
 
-    function updateDisplay() {
-      const overs = document.getElementById('currentOver').value;
-      const totalOvers = document.getElementById('totalOvers').value;
-      document.getElementById('scoreboard').innerText = `Score: ${runs}/${wickets}  | Overs: ${overs}/${totalOvers}`;
-    }
-
-    function addRuns(r) {
-      runs += r;
-      updateDisplay();
-    }
-
-    function addWide() {
-      const extra = prompt("How many wides?", "1");
-      const wideRuns = parseInt(extra);
-      if (!isNaN(wideRuns)) {
-        runs += wideRuns;
-        updateDisplay();
+      if (!t1 || !t2 || !players || !overs) {
+        alert("Please fill all fields.");
+        return;
       }
-    }
 
-    function addWicket() {
-      alert("❌ OUT!");
-      wickets++;
-      updateDisplay();
+      const params = new URLSearchParams({ t1, t2, players, overs });
+      window.location.href = `gully_score.html?${params.toString()}`;
     }
-
-    function resetScore() {
-      if (confirm("Reset the match?")) {
-        runs = 0;
-        wickets = 0;
-        document.getElementById('currentOver').value = 0;
-        updateDisplay();
-      }
-    }
-
-    function toss() {
-      const teams = ["Zalmi", "Qalandars"];
-      const winner = teams[Math.floor(Math.random() * teams.length)];
-      const choice = prompt(`${winner} won the toss! Bat or Ball?`, "Bat");
-      document.getElementById("tossResult").innerText = `${winner} won the toss and chose to ${choice}`;
-    }
-
-    function goBack() {
-      if (confirm("Are you sure you want to return to Home?")) {
-        window.location.href = "index.html";
-      }
-    }
-
-    updateDisplay();
   </script>
-
 </body>
 </html>
