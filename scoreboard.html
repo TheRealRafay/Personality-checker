@@ -1,90 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gully Cricket Scoreboard</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       background: #000;
-      color: white;
+      color: #fff;
+      font-family: Arial, sans-serif;
       text-align: center;
       padding: 20px;
-      margin: 0;
     }
 
     h1 {
-      font-size: 26px;
-      margin-bottom: 20px;
+      font-size: 28px;
     }
 
-    input {
+    input, select {
       padding: 10px;
-      margin: 10px;
+      margin: 5px;
       border-radius: 8px;
       border: none;
-      font-size: 16px;
       width: 200px;
     }
 
-    .score-buttons button, .bottom-buttons button, .back-button {
-      padding: 10px 20px;
-      margin: 10px;
-      background-color: black;
-      color: white;
+    .buttons button {
+      padding: 12px 20px;
+      margin: 5px;
       border: none;
+      background: black;
+      color: white;
       border-radius: 10px;
       font-size: 16px;
       cursor: pointer;
     }
 
-    .score-buttons button:hover, .bottom-buttons button:hover, .back-button:hover {
+    .buttons button:hover {
       outline: 2px solid gold;
     }
 
-    #scoreDisplay {
-      font-size: 22px;
+    #scoreboard {
+      font-size: 20px;
       margin-top: 20px;
+    }
+
+    .section {
+      margin-top: 20px;
+    }
+
+    .back-button {
+      margin-top: 30px;
+      background-color: black;
     }
   </style>
 </head>
 <body>
 
-  <h1>🏏 Gully Cricket Live Scoreboard</h1>
+  <h1>🏏 Gully Cricket Scoreboard</h1>
 
-  <div>
+  <div class="section">
     <input type="text" id="batter" placeholder="Batter Name">
     <input type="text" id="bowler" placeholder="Bowler Name">
-    <input type="text" id="fielder" placeholder="Fielder (if catch)">
+    <input type="text" id="fielder" placeholder="Fielder (Catch?)">
   </div>
 
-  <div class="score-buttons">
+  <div class="section">
+    <label>Overs:</label>
+    <input type="number" id="currentOver" value="0" style="width: 60px;">
+    /
+    <input type="number" id="totalOvers" value="5" style="width: 60px;">
+  </div>
+
+  <div class="buttons">
     <button onclick="addRuns(1)">1 Run</button>
     <button onclick="addRuns(2)">2 Runs</button>
     <button onclick="addRuns(3)">3 Runs</button>
     <button onclick="addRuns(4)">4 Runs</button>
     <button onclick="addRuns(5)">5 Runs</button>
     <button onclick="addRuns(6)">6 Runs</button>
-    <button onclick="addWicket()">Wicket</button>
     <button onclick="addWide()">Wide +1</button>
+    <button onclick="addWicket()">Wicket</button>
+    <button onclick="resetScore()">Reset</button>
   </div>
 
-  <div id="scoreDisplay">Score: 0/0</div>
+  <div id="scoreboard">Score: 0/0</div>
+  <div id="tossResult" class="section"></div>
 
-  <div class="bottom-buttons">
-    <button onclick="resetScore()">Reset Score</button>
+  <div class="buttons">
+    <button onclick="toss()">Toss</button>
+    <button class="back-button" onclick="goBack()">⬅️ Back to Home</button>
   </div>
-
-  <!-- Back to Home with confirmation -->
-  <button class="back-button" onclick="confirmBack()">⬅️ Back to Home</button>
 
   <script>
     let runs = 0;
     let wickets = 0;
 
     function updateDisplay() {
-      document.getElementById("scoreDisplay").innerText = `Score: ${runs}/${wickets}`;
+      const overs = document.getElementById('currentOver').value;
+      const totalOvers = document.getElementById('totalOvers').value;
+      document.getElementById('scoreboard').innerText = `Score: ${runs}/${wickets}  | Overs: ${overs}/${totalOvers}`;
     }
 
     function addRuns(r) {
@@ -92,30 +107,44 @@
       updateDisplay();
     }
 
-    function addWicket() {
-      alert("❌ OUT!");
-      wickets += 1;
-      updateDisplay();
-    }
-
     function addWide() {
-      runs += 1;
-      updateDisplay();
-    }
-
-    function resetScore() {
-      if (confirm("Reset the score?")) {
-        runs = 0;
-        wickets = 0;
+      const extra = prompt("How many wides?", "1");
+      const wideRuns = parseInt(extra);
+      if (!isNaN(wideRuns)) {
+        runs += wideRuns;
         updateDisplay();
       }
     }
 
-    function confirmBack() {
-      if (confirm("Are you sure you want to go back to Home?")) {
+    function addWicket() {
+      alert("❌ OUT!");
+      wickets++;
+      updateDisplay();
+    }
+
+    function resetScore() {
+      if (confirm("Reset the match?")) {
+        runs = 0;
+        wickets = 0;
+        document.getElementById('currentOver').value = 0;
+        updateDisplay();
+      }
+    }
+
+    function toss() {
+      const teams = ["Zalmi", "Qalandars"];
+      const winner = teams[Math.floor(Math.random() * teams.length)];
+      const choice = prompt(`${winner} won the toss! Bat or Ball?`, "Bat");
+      document.getElementById("tossResult").innerText = `${winner} won the toss and chose to ${choice}`;
+    }
+
+    function goBack() {
+      if (confirm("Are you sure you want to return to Home?")) {
         window.location.href = "index.html";
       }
     }
+
+    updateDisplay();
   </script>
 
 </body>
